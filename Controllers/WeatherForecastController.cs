@@ -25,7 +25,7 @@ public class WeatherForecastController : ControllerBase
         {
             Date = DateTime.Now.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = "Data From Microservice One - user Microservice by uday"
+            Summary = "Data From Microservice One - user Microservice by uday Showcase CI capabilities "
         })
         .ToArray();
     }
