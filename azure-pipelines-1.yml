@@ -63,7 +63,7 @@ stages:
         action: 'deploy'
         kubernetesServiceConnection: 'KubeC'
         namespace: 'default'
-        manifests: '$(System.ArtifactsDirectory)/configuration/kubernetes/deployment.yaml'
+        manifests: '$(System.ArtifactsDirectory)/deployment.yaml'
         containers: 'uday4r4nds/microserviceone:$(tag)'
 # Stage 2
 # Download the K8S Files
