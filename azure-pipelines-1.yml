@@ -19,31 +19,6 @@ stages:
 # Build Docker Image
 # Publish the K8S Files
 
-- stage: Build
-  displayName: Build image
-  jobs:  
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: Docker@2
-      inputs:
-        containerRegistry: 'DockerHub'
-        repository: 'uday4r4nds/microserviceone'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-        tags: '$(tag)'
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/*.yaml'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'manifests'
-        publishLocation: 'Container'
 - stage: Deploy
   displayName: Deploy image
   jobs:  
@@ -54,7 +29,11 @@ stages:
     steps:
     - task: DownloadPipelineArtifact@2
       inputs:
-        buildType: 'current'
+        buildType: 'specific'
+        project: '6cf325ae-0683-4cf2-9dfb-0e2e178e6b6e'
+        definition: '2'
+        specificBuildWithTriggering: true
+        buildVersionToDownload: 'latest'
         artifactName: 'manifests'
         itemPattern: '**/*.yaml'
         targetPath: '$(System.ArtifactsDirectory)'
@@ -64,7 +43,7 @@ stages:
         kubernetesServiceConnection: 'KubeC'
         namespace: 'default'
         manifests: '$(System.ArtifactsDirectory)/deployment.yaml'
-        containers: 'uday4r4nds/microserviceone:$(tag)'
+        containers: 'uday4r4nds/microserviceone:0.0.5.RELEASE'
 # Stage 2
 # Download the K8S Files
 # Deploy to K8S Cluster with Docker Image
