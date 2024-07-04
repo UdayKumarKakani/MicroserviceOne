@@ -52,14 +52,12 @@ stages:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-    - script: dir $(Build.SourcesDirectory)/manifests
-      displayName: Cloning Manifest Files From Repo
-    # - task: DownloadPipelineArtifact@2
-    #   inputs:
-    #     buildType: 'current'
-    #     artifactName: 'manifests'
-    #     itemPattern: '**/*.yaml'
-    #     targetPath: '$(System.ArtifactsDirectory)'
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'current'
+        artifactName: 'manifests'
+        itemPattern: '**/*.yaml'
+        targetPath: '$(System.ArtifactsDirectory)'
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
