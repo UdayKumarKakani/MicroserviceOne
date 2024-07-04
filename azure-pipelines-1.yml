@@ -57,13 +57,13 @@ stages:
         buildType: 'current'
         artifactName: 'manifests'
         itemPattern: '**/*.yaml'
-        targetPath: '$(System.ArtifactStagingDirectory)'
+        targetPath: '$(System.ArtifactsDirectory)'
     - task: KubernetesManifest@0
       inputs:
         action: 'deploy'
         kubernetesServiceConnection: 'KubeC'
         namespace: 'default'
-        manifests: '$(System.ArtifactStagingDirectory)/deployment.yaml'
+        manifests: '$(System.ArtifactsDirectory)/deployment.yaml'
         containers: 'uday4r4nds/microserviceone:$(tag)'
 # Stage 2
 # Download the K8S Files
