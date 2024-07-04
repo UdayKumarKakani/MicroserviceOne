@@ -60,6 +60,6 @@ stages:
         action: 'deploy'
         connectionType: 'kubernetesServiceConnection'
         kubernetesServiceConnection: 'KubeC'
-        namespace: 'Default'
+        namespace: 'default'
         manifests: '$(System.ArtifactsDirectory)/manifests/deployment.yaml'
         containers: 'uday4r4nds/microserviceone:$(tag)'
