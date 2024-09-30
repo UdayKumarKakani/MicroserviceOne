@@ -25,8 +25,8 @@ public class WeatherForecastController : ControllerBase
         for (int i = 0; i < 10; i++)
         {
             WeatherForecast weather = new WeatherForecast();
-            weather.ProductName= "Product-" + i;
-            weather.ProductDescription= "Product Description-" + i;
+            weather.ProductName= "Product -" + i;
+            weather.ProductDescription= "Product Details-" + i;
             weather.Date= DateTime.Now;
             weather.Cost= i;
             weather.Count= i+ 1;
