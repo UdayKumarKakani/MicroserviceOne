@@ -1,3 +1,4 @@
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroserviceOne.Controllers;
@@ -19,15 +20,20 @@ public class WeatherForecastController : ControllerBase
     }
 
     [HttpGet(Name = "GetWeatherForecast")]
-    public IEnumerable<WeatherForecast> Get()
+    public ActionResult<IList<WeatherForecast>> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        IList<WeatherForecast> weatherForecast= new List<WeatherForecast>();
+        for (int i = 0; i < 10; i++)
         {
-            Date = DateTime.Now.AddDays(index),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = "Data From Microservice One - user Microservice by uday Showcase CI capabilities and CD capabilities"
-        })
-        .ToArray();
+            WeatherForecast weather = new WeatherForecast();
+            weather.ProductName= "Product -" + i;
+            weather.ProductDescription= "Product Details of Amazon-" + i;
+            weather.Date= DateTime.Now;
+            weather.Cost= i;
+            weather.Count= i+ 1;
+            weatherForecast.Add(weather);
+        }
+        return Ok(weatherForecast);
     }
 
     
