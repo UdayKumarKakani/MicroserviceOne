@@ -26,7 +26,7 @@ public class WeatherForecastController : ControllerBase
         {
             WeatherForecast weather = new WeatherForecast();
             weather.ProductName= "Product -" + i;
-            weather.ProductDescription= "Product Details of Amazon-" + i;
+            weather.ProductDescription= "Product Details of flipkart-" + i;
             weather.Date= DateTime.Now;
             weather.Cost= i;
             weather.Count= i+ 1;
