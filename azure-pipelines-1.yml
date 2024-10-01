@@ -24,7 +24,7 @@ stages:
     - task: Docker@2
       inputs:
         containerRegistry: 'DockerHub'
-        repository: 'uday4r4nds/microserviceone'
+        repository: 'uday4r4nds/microserviceone1'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
         tags: '$(tag)'
